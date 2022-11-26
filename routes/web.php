@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PasswordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/zapomenute-heslo', [PasswordController::class, 'forgottenPassword'])->name('forgotten-password');
+
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.submit');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
 Route::get('/', [IndexController::class, "index"]);
+
+Route::middleware(["auth"])->group(function () {
+    Route::view("/dashboard", "pages.dashboard")->name("dashboard");
+});

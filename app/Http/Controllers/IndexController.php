@@ -6,8 +6,8 @@ use Illuminate\View\View;
 
 class IndexController extends Controller
 {
-  public function index(): View
-  {
-    return view("pages.index");
-  }
+    public function index(): View
+    {
+        return view("pages.index");
+    }
 }
