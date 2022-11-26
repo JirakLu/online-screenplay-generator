@@ -21,7 +21,7 @@ services:
         volumes:
             - '.:/var/www/html'
         networks:
-            - scenar-truncova-sail
+            - app-network
         depends_on:
             - mysql
     mysql:
@@ -37,7 +37,7 @@ services:
         volumes:
             - dbdata:/var/lib/mysql
         networks:
-            - scenar-truncova-sail
+            - app-network
 
     adminer:
         image: adminer:latest
@@ -49,10 +49,10 @@ services:
             ADMINER_DESIGN: pepa-linha
             ADMINER_PLUGINS: tables-filter
         networks:
-            - scenar-truncova-sail
+            - app-network
 
 networks:
-    scenar-truncova-sail:
+    app-network:
         driver: bridge
 volumes:
     dbdata:
