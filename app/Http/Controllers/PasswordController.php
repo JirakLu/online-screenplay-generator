@@ -6,6 +6,6 @@ class PasswordController extends Controller
 {
     public function forgottenPassword()
     {
-        return view("pages.forgotten-password");
+        return view("pages.auth.forgotten-password");
     }
 }

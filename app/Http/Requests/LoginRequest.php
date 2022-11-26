@@ -18,9 +18,9 @@ class LoginRequest extends FormRequest
     public function messages(): array
     {
         return [
-            '*.required' => 'Toto pole je povinné',
-            'email.email' => 'Prosím vyplňte email ve správném formátu',
-            'email.exists' => 'Uživatel s tímto emailem neexistuje',
+            '*.required' => 'Toto pole je povinné.',
+            'email.email' => 'Prosím vyplňte email ve správném formátu.',
+            'email.exists' => 'Uživatel s tímto emailem neexistuje.',
         ];
     }
 

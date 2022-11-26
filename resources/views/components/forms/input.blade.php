@@ -8,7 +8,7 @@
             id="{{ $id }}"
             name="{{ $name }}"
             value="{{ $value }}"
-            {{ $errors->has($name) ? "aria-invalid='true' aria-describedby='$name-error'" : "" }}
+            {{ $errors->has($name) ? "aria-invalid=true aria-describedby=$name-error" : "" }}
             {{ $attributes->class([
                 "block w-full appearance-none rounded-md border px-3 py-2 placeholder-gray-400 shadow-sm focus:outline-none sm:text-sm",
                 "border-gray-300 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500" => !$errors->has($name),
