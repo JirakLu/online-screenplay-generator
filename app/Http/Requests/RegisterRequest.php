@@ -35,7 +35,7 @@ class RegisterRequest extends FormRequest
 
             'password.string' => "Prosím vyplňte heslo ve správném formátu.",
             'password.min' => "Heslo musí mít alespoň osm znaků.",
-            'validation.password.mixed' => "Heslo musí obsahovat alespoň jedno velké písmeno.",
+            'password.confirmed' => "Hesla se musí shodovat.",
         ];
     }
 
