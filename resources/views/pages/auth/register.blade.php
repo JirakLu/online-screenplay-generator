@@ -5,7 +5,7 @@
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 space-y-6">
-                <h1 class="text-gray-800 text-4xl">Registrace</h1>
+                <h1 class="text-gray-800 text-4xl font-bold">Registrace</h1>
                 <form class="flex flex-col gap-6 items-stretch" action="{{ route("register.submit") }}" method="POST">
                     @csrf
                     <x-forms.input label="Přezdívka" name="name" type="text" required remember/>
