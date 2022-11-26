@@ -27,7 +27,7 @@ class LoginController extends Controller
 
         return back()->withErrors([
             'password' => 'Zadali jste špatné heslo',
-        ]);
+        ])->withInput();
     }
 
     public function logout()
