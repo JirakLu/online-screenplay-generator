@@ -19,7 +19,7 @@ class SceneFactory extends Factory
             'number' => $this->faker->numberBetween(1, 10),
             'location' => $this->faker->country(),
             'description' => $this->faker->text(),
-            'scene_type_id' => SceneType::all()->random()->id,
+            'scene_type_id' => SceneType::inRandomOrder()->first()->id,
         ];
     }
 }

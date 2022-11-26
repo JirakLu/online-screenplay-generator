@@ -15,8 +15,8 @@ class ShotFactory extends Factory
     {
         return [
             'number' => $this->faker->numberBetween(1, 10),
-            'shot_type_from' => ShotType::all()->random()->id,
-            'shot_type_to' => ShotType::all()->random()->id,
+            'shot_type_from' => ShotType::inRandomOrder()->first()->id,
+            'shot_type_to' => ShotType::inRandomOrder()->first()->id,
         ];
     }
 }
