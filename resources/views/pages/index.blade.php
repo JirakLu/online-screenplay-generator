@@ -7,6 +7,6 @@
 
 @section("content")
     <pre>
-    {{$script->toJson(JSON_PRETTY_PRINT)}}
+    {{  $users->toJson(JSON_PRETTY_PRINT) }}
     </pre>
 @endsection

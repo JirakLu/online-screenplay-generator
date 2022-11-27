@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\GeneratePDF;
+use App\Http\Controllers\GeneratePDFController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
@@ -31,7 +31,7 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
 Route::get('/zapomenute-heslo', [PasswordController::class, 'forgottenPassword'])->name('forgotten-password');
 
-Route::get("/pdf", [GeneratePDF::class, "generate"])->name("pdf-generate");
+Route::get("/pdf", [GeneratePDFController::class, "generate"])->name("pdf-generate");
 
 // Email verification
 Route::middleware('auth')->group(function () {

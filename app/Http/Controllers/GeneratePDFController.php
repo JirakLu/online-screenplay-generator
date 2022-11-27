@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Script;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-class GeneratePDF extends Controller
+class GeneratePDFController extends Controller
 {
 
     public function generate()
     {
-
-
         $script = Script::with([
             'characters',
             'scenes',
@@ -33,9 +31,8 @@ class GeneratePDF extends Controller
         });
 
         $pdf = Pdf::loadView("components.pdf.default", ['script' => $script])->setPaper("a4", "landscape");
-        //return view("pages.index", ['script' => $script]);
-        //return $pdf->stream("negr.pdf");
-        return view("components.pdf.default", ['script' => $script]);
 
+        return $pdf->stream("truncova.pdf");
+//        return view("components.pdf.default", ['script' => $script]);
     }
 }
