@@ -12,10 +12,10 @@
         <div class="flex flex-col justify-center items-center">
           <x-helper>DRUH ZÁBĚRU</x-helper>
           <div class="flex flex-row mt-1 justify-around items-center w-full">
-            <p class="border border-white text-white rounded flex flex-row justify-center items-center px-2">
+            <p class="border border-white text-white rounded px-2">
               OD
             </p>
-            <p class="border border-white text-white rounded flex flex-row justify-center items-center px-2">
+            <p class="border border-white text-white rounded px-2">
               DO
             </p>
           </div>
