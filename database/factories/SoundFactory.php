@@ -13,7 +13,7 @@ class SoundFactory extends Factory
     public function definition(): array
     {
         return [
-            'text' => $this->faker->text(),
+            'text' => fake()->text(),
         ];
     }
 }

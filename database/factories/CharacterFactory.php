@@ -14,8 +14,8 @@ class CharacterFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'first_name' => $this->faker->firstName(),
-			'last_name' => $this->faker->lastName(),
+			'first_name' => fake()->firstName(),
+			'last_name' => fake()->lastName(),
 		];
 	}
 }
