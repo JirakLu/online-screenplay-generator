@@ -19,13 +19,10 @@
                         </x-buttons.primary-button>
                     </form>
 
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
 
-                        <x-buttons.secondary-button type="submit">
-                            Odhlásit se
-                        </x-buttons.secondary-button>
-                    </form>
+                    <x-buttons.secondary-button type="link" :href="route('logout')">
+                        Odhlásit se
+                    </x-buttons.secondary-button>
                 </div>
             </div>
         </div>

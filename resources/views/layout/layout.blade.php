@@ -8,7 +8,7 @@
     <title>Scénář</title>
     @vite('resources/css/app.css')
 </head>
-<body class="antialiased min-h-screen w-full overflow-hidden scroll-smooth flex flex-col dark:bg-black/70">
+<body class="antialiased min-h-screen w-full overflow-hidden scroll-smooth flex flex-col">
 <main class="grow">
     @yield("content")
 </main>
