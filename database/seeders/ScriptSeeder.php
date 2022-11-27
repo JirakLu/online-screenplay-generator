@@ -29,10 +29,10 @@ class ScriptSeeder extends Seeder
                     )
                     ->has(
                         Scene::factory()
-                            ->count(fake()->numberBetween(1, 3))
+                            ->count(fake()->numberBetween(3, 5))
                             ->has(
                                 Shot::factory()
-                                    ->count(fake()->numberBetween(1, 5))
+                                    ->count(fake()->numberBetween(3, 5))
                                     ->hasAttached(
                                         ShotParam::inRandomOrder()->limit(fake()->numberBetween(0, 3))->get()
                                     )
