@@ -33,7 +33,7 @@ class ScriptSeeder extends Seeder
                     'script_id' => $script->id,
                 ]);
                 // Create Scenes
-                $scenes = Scene::factory(fake()->numberBetween(1, 5))->make([
+                $scenes = Scene::factory(fake()->numberBetween(2, 5))->make([
                     'script_id' => $script->id,
                 ]);
                 // iterate over scenes
@@ -55,7 +55,7 @@ class ScriptSeeder extends Seeder
                     // Factory
 
                     // Create shots
-                    $shots = Shot::factory(fake()->numberBetween(1, 5))->make([
+                    $shots = Shot::factory(fake()->numberBetween(2, 5))->make([
                         'scene_id' => $scene->id,
                     ]);
                     // iterate over shots
@@ -76,7 +76,7 @@ class ScriptSeeder extends Seeder
                         // Factory comments for shot
                         Comment::factory(fake()->numberBetween(0, 2))->create(['shot_id' => $shot->id]);
                         // make monolog for shot
-                        $monologs = Monolog::factory(fake()->numberBetween(0, 2))->make(['shot_id' => $shot->id, 'character_id' => $scene->characters->random()->id]);
+                        $monologs = Monolog::factory(fake()->numberBetween(0, 4))->make(['shot_id' => $shot->id, 'character_id' => $scene->characters->random()->id]);
                         // foreach monolog
                         $monologs->each(function (Monolog $monolog, int $monologIndex) use ($scene) {
                             //number monologs
