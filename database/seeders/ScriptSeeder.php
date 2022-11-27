@@ -78,9 +78,10 @@ class ScriptSeeder extends Seeder
                         // make monolog for shot
                         $monologs = Monolog::factory(fake()->numberBetween(0, 2))->make(['shot_id' => $shot->id, 'character_id' => $scene->characters->random()->id]);
                         // foreach monolog
-                        $monologs->each(function (Monolog $monolog, int $monologIndex) {
+                        $monologs->each(function (Monolog $monolog, int $monologIndex) use ($scene) {
                             //number monologs
                             $monolog->number = $monologIndex + 1;
+                            $monolog->character_id =  $scene->characters->random()->id;
                         });
 
                         // save monologs
