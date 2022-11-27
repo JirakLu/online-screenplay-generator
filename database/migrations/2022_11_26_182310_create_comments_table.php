@@ -6,18 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration{
 
-	public function up()
-	{
-		Schema::create('comments', function (Blueprint $table) {
-			$table->id();
+    public function up()
+    {
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id();
 
             $table->foreignId('shot_id')->constrained()->cascadeOnDelete();
             $table->string('text');
-		});
-	}
+        });
+    }
 
-	public function down()
-	{
-		Schema::dropIfExists('comments');
-	}
+    public function down()
+    {
+        Schema::dropIfExists('comments');
+    }
 };

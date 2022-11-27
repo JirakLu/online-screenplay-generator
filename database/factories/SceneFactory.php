@@ -16,9 +16,9 @@ class SceneFactory extends Factory
     public function definition(): array
     {
         return [
-            'number' => $this->faker->numberBetween(1, 10),
-            'location' => $this->faker->country(),
-            'description' => $this->faker->text(),
+            'number' => fake()->numberBetween(1, 10),
+            'location' => fake()->country(),
+            'description' => fake()->text(),
             'scene_type_id' => SceneType::inRandomOrder()->first()->id,
         ];
     }

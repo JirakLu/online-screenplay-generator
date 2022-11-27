@@ -6,18 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration{
 
-	public function up()
-	{
-		Schema::create('scene_types', function (Blueprint $table) {
-			$table->id();
+    public function up()
+    {
+        Schema::create('scene_types', function (Blueprint $table) {
+            $table->id();
 
-			$table->string('full');
-			$table->string('short');
-		});
-	}
+            $table->string('full');
+            $table->string('short');
+        });
+    }
 
-	public function down()
-	{
-		Schema::dropIfExists('scene_types');
-	}
+    public function down()
+    {
+        Schema::dropIfExists('scene_types');
+    }
 };

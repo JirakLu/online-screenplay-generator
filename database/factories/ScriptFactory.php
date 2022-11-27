@@ -14,8 +14,8 @@ class ScriptFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->city(),
-            'description' => $this->faker->text(),
+            'name' => fake()->city(),
+            'description' => fake()->text(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

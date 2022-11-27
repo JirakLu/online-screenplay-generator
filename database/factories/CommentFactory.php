@@ -14,7 +14,7 @@ class CommentFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'text' => $this->faker->text(20),
+			'text' => fake()->text(20),
 		];
 	}
 }
