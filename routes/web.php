@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GeneratePDF;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
@@ -50,5 +51,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/', [IndexController::class, "index"]);
 
 Route::middleware(["auth", "verified"])->group(function () {
-    Route::view("/dashboard", "pages.dashboard")->name("dashboard");
+    Route::get("/dashboard", [DashboardController::class, "index"])->name("dashboard");
 });
