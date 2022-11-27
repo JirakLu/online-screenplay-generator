@@ -18,12 +18,10 @@ class MonologFactory extends Factory
         $shot = Shot::inRandomOrder()->first();
 
         return [
-            'number' => fake()->numberBetween(1, 10),
+            'number' => -1,
             'text' => fake()->text(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'character_id' => $shot->scene->characters()->inRandomOrder()->first()->id,
-            'shot_id' => $shot->id,
         ];
     }
 }

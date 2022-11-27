@@ -14,7 +14,7 @@ class ShotFactory extends Factory
     public function definition(): array
     {
         return [
-            'number' => fake()->numberBetween(1, 10),
+            'number' => -1,
             'shot_type_from' => ShotType::inRandomOrder()->first()->id,
             'shot_type_to' => ShotType::inRandomOrder()->first()->id,
         ];
