@@ -15,8 +15,13 @@ class ShotType extends Model
 
     public $timestamps = false;
 
-    public function shots(): HasMany
+    public function shotsFrom(): HasMany
     {
-        return $this->hasMany(Shot::class);
+        return $this->hasMany(Shot::class, 'shot_type_from');
+    }
+
+    public function shotsTo(): HasMany
+    {
+        return $this->hasMany(Shot::class, 'shot_type_to');
     }
 }

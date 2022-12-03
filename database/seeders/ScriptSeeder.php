@@ -20,63 +20,75 @@ class ScriptSeeder extends Seeder
     {
         User::all()->each(function ($user) {
 
-            foreach (range(0, fake()->numberBetween(0, 2)) as $i) {
-                Script::factory()
-                    ->for($user)
-                    ->has(
-                        Character::factory()
-                            ->count(fake()->numberBetween(2, 20))
-                    )
-                    ->has(
-                        Scene::factory()
-                            ->count(fake()->numberBetween(1, 3))
-                            ->has(
-                                Shot::factory()
-                                    ->count(fake()->numberBetween(1, 5))
-                                    ->hasAttached(
-                                        ShotParam::inRandomOrder()->limit(fake()->numberBetween(0, 3))->get()
-                                    )
-                                    ->has(
-                                        Sound::factory()
-                                            ->count(fake()->numberBetween(0, 1))
-                                    )
-                                    ->has(
-                                        Comment::factory()
-                                            ->count(1)
-                                    )
-                            )
-                    )
-                    ->create();
-            }
-        });
+            // Create scripts
+            $scripts = Script::factory(fake()->numberBetween(1, 3))->make([
+                'user_id' => $user->id,
+            ]);
 
-        // Iterate through all scripts
-        Script::with('scenes', 'scenes.shots', 'scenes.characters')->get()->each(function (Script $script) {
-            // Iterate through all scenes
-            $script->scenes()->each(function (Scene $scene, int $sceneIndex) {
-                // Attach characters to scene
-                $scene->characters()->attach($scene->script->characters->random(fake()->numberBetween(1, min(3, $scene->script->characters->count()))));
-                // Increment scene number
-                $scene->number = $sceneIndex + 1;
-                $scene->save();
-                // Iterate through all shots
-                $scene->shots()->each(function (Shot $shot, int $shotIndex) {
-                    $shot->number = $shotIndex + 1;
-                    // Create monologs collection
-                    $monologs = Monolog::factory()->count(fake()->numberBetween(0, 3))->make([
-                        'character_id' => $shot->scene->characters()->inRandomOrder()->first()->id,
+            // iterate over scripts
+
+            $scripts->each(function (Script $script) {
+                //Create characters
+                $characters = Character::factory(fake()->numberBetween(1, 20))->make([
+                    'script_id' => $script->id,
+                ]);
+                // Create Scenes
+                $scenes = Scene::factory(fake()->numberBetween(2, 5))->make([
+                    'script_id' => $script->id,
+                ]);
+                // iterate over scenes
+                $scenes->each(function (Scene $scene, int $sceneIndex) use ($characters) {
+
+                    //number Scenes
+                    $scene->number = $sceneIndex + 1;
+                });
+                $script->save();
+                $script->characters()->saveMany($characters);
+                $script->scenes()->saveMany($scenes);
+                // iterate over scenes
+                $scenes->each(function (Scene $scene) use ($script) {
+                    // assign characters to scenes min 1 max 3 (if there are any)
+                    $scene->characters()->attach($script->characters->random(
+                        fake()->numberBetween(1, min(3, $script->characters->count()))
+                    ));
+
+                    // Factory
+
+                    // Create shots
+                    $shots = Shot::factory(fake()->numberBetween(2, 5))->make([
+                        'scene_id' => $scene->id,
                     ]);
-
-                    // Number monologs
-                    $monologs->each(function (Monolog $monolog, int $monologIndex) {
-                        $monolog->number = $monologIndex + 1;
+                    // iterate over shots
+                    $shots->each(function (Shot $shot, int $shotIndex) {
+                        //number Shots
+                        $shot->number = $shotIndex + 1;
                     });
 
-                    $shot->monologs()->saveMany($monologs);
-                    $shot->save();
+                    $scene->shots()->saveMany($shots);
+
+                    // iterate over shots
+                    $shots->each(function (Shot $shot) use ($scene) {
+                        // Create shot params
+                        $shotParams = ShotParam::inRandomOrder()->limit(fake()->numberBetween(0, 2))->get();
+                        $shot->shotParams()->saveMany($shotParams);
+                        // Factory sound for shot
+                        Sound::factory(fake()->numberBetween(0, 2))->create(['shot_id' => $shot->id]);
+                        // Factory comments for shot
+                        Comment::factory(fake()->numberBetween(0, 2))->create(['shot_id' => $shot->id]);
+                        // make monolog for shot
+                        $monologs = Monolog::factory(fake()->numberBetween(0, 4))->make(['shot_id' => $shot->id, 'character_id' => $scene->characters->random()->id]);
+                        // foreach monolog
+                        $monologs->each(function (Monolog $monolog, int $monologIndex) use ($scene) {
+                            //number monologs
+                            $monolog->number = $monologIndex + 1;
+                            $monolog->character_id =  $scene->characters->random()->id;
+                        });
+
+                        // save monologs
+                        $shot->monologs()->saveMany($monologs);
+                    });
                 });
             });
         });
-
     }
 }

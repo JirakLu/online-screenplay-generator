@@ -19,7 +19,7 @@ class MonologFactory extends Factory
 
         return [
             'number' => -1,
-            'text' => fake()->text(),
+            'text' => fake()->text(40),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

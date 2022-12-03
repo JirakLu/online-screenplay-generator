@@ -44,9 +44,14 @@ class Shot extends Model
         return $this->belongsToMany(ShotParam::class, 'shot_has_params');
     }
 
-    public function shotType(): BelongsTo
+    public function shotTypeFrom(): BelongsTo
     {
-        return $this->belongsTo(ShotType::class);
+        return $this->belongsTo(ShotType::class, 'shot_type_from', 'id');
+    }
+
+    public function shotTypeTo(): BelongsTo
+    {
+        return $this->belongsTo(ShotType::class, 'shot_type_to', 'id');
     }
 
     public function sounds(): HasMany

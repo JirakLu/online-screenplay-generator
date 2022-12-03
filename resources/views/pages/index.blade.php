@@ -6,9 +6,7 @@
 @endphp
 
 @section("content")
-    <div>
-        @foreach($users as $user)
-            <div>{{ $user }}</div>
-        @endforeach
-    </div>
+    <pre>
+    {{  $users->toJson(JSON_PRETTY_PRINT) }}
+    </pre>
 @endsection
