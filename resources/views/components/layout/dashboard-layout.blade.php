@@ -9,7 +9,7 @@
     <x-layout.favicon/>
     @vite('resources/css/app.css')
 </head>
-<body {{ $attributes->class(["antialiased min-h-screen w-full scroll-smooth flex flex-col"]) }}>
+<body {{ $attributes->class(["antialiased min-h-screen w-full scroll-smooth flex flex-col bg-gray-50"]) }}>
 <x-sidebar>
     {{ $slot }}
 </x-sidebar>
