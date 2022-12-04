@@ -1,8 +1,8 @@
 <template x-teleport="body">
     <div class="relative z-10" role="dialog" x-bind:aria-modal="{{ $isOpen }}"
          @keydown.esc="{{ $onClose }}"
-         @click.outside="{{ $onClose }}"
          x-show="{{ $isOpen }}"
+         x-trap="{{ $isOpen }}"
          x-transition:enter="ease-out duration-300"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"
@@ -23,7 +23,8 @@
                  x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
 
                 <div
-                    class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    @click.outside="{{ $onClose }}; console.log('click')"
+                    class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                     {{ $slot }}
                 </div>
             </div>

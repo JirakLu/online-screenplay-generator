@@ -42,13 +42,9 @@
                 </div>
 
                 <div class="h-0 flex-1 overflow-y-auto pt-5 pb-4">
-                    <div class="flex flex-shrink-0 items-center px-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="currentColor" class="w-8 h-8 text-gray-400">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
-                        </svg>
-                    </div>
+                    <a href="{{ route("index") }}" class="flex flex-shrink-0 px-6 py-4">
+                        <x-svg.logo id="mobile"/>
+                    </a>
                     <nav class="mt-5 space-y-1 px-2">
                         <a href="{{ route("dashboard") }}"
                            class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
@@ -61,7 +57,7 @@
                             Scénáře
                         </a>
 
-                        <button type="button" @click="isAddModalOpen = true"
+                        <button type="button" @click="isSidebarOpen = false; isAddModalOpen = true"
                                 class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  stroke-width="1.5"
@@ -103,9 +99,9 @@
     <div class="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
         <div class="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
             <div class="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-                <div class="flex flex-shrink-0 items-center px-6 py-4">
-                    <x-svg.logo/>
-                </div>
+                <a href="{{ route("index") }}" class="flex flex-shrink-0 px-6 py-4">
+                    <x-svg.logo id="desktop"/>
+                </a>
                 <nav class="mt-5 flex-1 flex gap-1 flex-col items-stretch bg-white px-2">
                     <a href="{{ route("dashboard") }}"
                        class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
