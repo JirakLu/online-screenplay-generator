@@ -53,5 +53,13 @@ Route::get('/', [IndexController::class, "index"])->name("index");
 
 Route::middleware(["auth", "verified"])->group(function () {
     Route::get("/dashboard", [DashboardController::class, "index"])->name("dashboard");
-    Route::get('/script', [ScriptController::class, "index"])->name("script");
+
+    Route::prefix("/scenar")->name("script.")->group(function () {
+        Route::get("/{id}", [ScriptController::class, "index"])->name("index");
+        Route::post("/vytorit", [ScriptController::class, "store"])->name("store");
+        Route::get("/{id}/odstranit", [ScriptController::class, "delete"])->name("delete");
+
+        Route::get("/{id}/pdf", [GeneratePDFController::class, "preview"])->name("pdf");
+        Route::get("/{id}/stahnout", [GeneratePDFController::class, "download"])->name("download");
+    });
 });

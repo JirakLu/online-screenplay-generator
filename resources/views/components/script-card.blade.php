@@ -17,7 +17,7 @@
             <div class="flex flex-row gap-x-3">
                 {{--        TODO: connect to CRUD        --}}
                 {{--        Export        --}}
-                <a href=""
+                <a href="{{ route("script.download", ["id" => $id]) }}"
                    class="group w-9 h-9 grid place-items-center rounded-lg bg-gray-100 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          fill="none"

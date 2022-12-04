@@ -8,7 +8,14 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class GeneratePDFController extends Controller
 {
 
-    public function generate()
+    public function preview(int $id)
+    {
+        $pdf = $this->generate($id);
+
+        return $pdf->stream();
+    }
+
+    public function generate(int $id): \Barryvdh\DomPDF\PDF
     {
         $script = Script::with([
             'characters',
@@ -22,7 +29,7 @@ class GeneratePDFController extends Controller
             'scenes.shots.comments',
             'scenes.shots.sounds',
             'scenes.shots.monologs',
-        ])->where('user_id', 1)->first();
+        ])->find($id);
 
         $script->scenes = $script->scenes->sortBy('number');
         // sort shots by number
@@ -30,9 +37,13 @@ class GeneratePDFController extends Controller
             $scene->shots = $scene->shots->sortBy('number');
         });
 
-        $pdf = Pdf::loadView("components.pdf.default", ['script' => $script])->setPaper("a4", "landscape");
+        return Pdf::loadView("components.pdf.default", ['script' => $script])->setPaper("a4", "landscape");
+    }
 
-        return $pdf->stream("truncova.pdf");
-//        return view("components.pdf.default", ['script' => $script]);
+    public function download(int $id)
+    {
+        $pdf = $this->generate($id);
+
+        return $pdf->download();
     }
 }

@@ -10,7 +10,7 @@
     },
 }">
     <x-layout.container class="py-6 space-y-6">
-        <h1 class="text-5xl font-semibold text-gray-900">Scénáře</h1>
+        <h1 class="text-3xl sm:text-5xl font-semibold text-gray-900">Scénáře</h1>
         <div class="bg-white lg:min-w-0 lg:flex-1">
             <ul role="list" class="space-y-5">
                 @forelse($scripts as $script)
@@ -46,7 +46,7 @@
                 <x-forms.textarea label="Popis" name="description" required/>
             </div>
             <div class="flex flex-col sm:flex-row-reverse gap-3">
-                <x-buttons.primary-button type="link" :href="route('script')">
+                <x-buttons.primary-button type="link" :href="route('index')">
                     Vytvořit
                 </x-buttons.primary-button>
                 <x-buttons.secondary-button type="button" @click="onCloseAddModal">
