@@ -21,7 +21,7 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request): RedirectResponse
     {
-        if (Auth::attempt($request->only(["email", "password"]), $request->get("rememberMe"))) {
+        if (Auth::attempt($request->safe()->except(["email", "password"]), $request->get("rememberMe"))) {
             $request->session()->regenerate();
 
             return redirect()->intended('dashboard');

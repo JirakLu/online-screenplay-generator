@@ -55,6 +55,7 @@ Route::middleware(["auth", "verified"])->group(function () {
 
     Route::prefix("/scenar")->name("script.")->group(function () {
         Route::get("/{id}", [ScriptController::class, "index"])->name("index");
+        Route::post("/init", [ScriptController::class, "init"])->name("init");
         Route::post("/vytorit", [ScriptController::class, "store"])->name("store");
         Route::get("/{id}/odstranit", [ScriptController::class, "delete"])->name("delete");
 

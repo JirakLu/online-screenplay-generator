@@ -14,7 +14,9 @@
                 "border-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500" => $errors->has($name),
             ])->merge(["rows" => 4]) }}
         >
-            {{ $value }}
+            @if($value)
+                {{ $value }}
+            @endif
         </textarea>
     </div>
 

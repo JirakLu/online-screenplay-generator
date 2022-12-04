@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ScriptInitRequest;
 use App\Models\Script;
 use App\Services\PDFService;
 use Illuminate\Http\Response;
@@ -42,6 +43,15 @@ class ScriptController extends Controller
         return $script;
     }
 
+    public function init(ScriptInitRequest $request)
+    {
+        $script = new Script($request->validated());
+        $script->user_id = auth()->user()->id;
+        $script->save();
+
+        return redirect()->route("script.index", ["id" => $script->id]);
+    }
+
     public function delete($id)
     {
         // delete script with id $id
@@ -51,8 +61,6 @@ class ScriptController extends Controller
         return redirect()->route("dashboard");
 
     }
-
-
 
 
     public function store(Response $respon)

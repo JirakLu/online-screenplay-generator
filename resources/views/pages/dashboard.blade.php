@@ -1,5 +1,5 @@
 <x-layout.dashboard-layout title="Scenarista |  Dashboard" x-data="{
-    isAddModalOpen: false,
+    isAddModalOpen: {{ $errors->has('name') || $errors->has('description') ? 'true' : 'false' }},
     onCloseAddModal() {
         this.isAddModalOpen = false
     },
@@ -37,18 +37,17 @@
     </x-layout.container>
 
     <x-modal.modal is-open="isAddModalOpen" on-close="onCloseAddModal">
-        {{--    TODO: connect to CRUD    --}}
-        <form action="" method="POST" class="bg-white flex flex-col gap-8">
+        <form action="{{ route("script.init") }}" method="POST" class="bg-white flex flex-col gap-8">
             @csrf
             <h3 class="text-2xl font-medium leading-6 text-gray-900">
                 Nový scénář
             </h3>
             <div class="space-y-3">
-                <x-forms.input label="Název" name="name" required/>
-                <x-forms.textarea label="Popis" name="description" required/>
+                <x-forms.input label="Název" name="name" remember required/>
+                <x-forms.textarea label="Popis" name="description" remember required/>
             </div>
             <div class="flex flex-col sm:flex-row-reverse gap-3">
-                <x-buttons.primary-button type="link" :href="route('index')">
+                <x-buttons.primary-button type="submit">
                     Vytvořit
                 </x-buttons.primary-button>
                 <x-buttons.secondary-button type="button" @click="onCloseAddModal">
@@ -59,7 +58,6 @@
     </x-modal.modal>
 
     <x-modal.modal is-open="isDeleteModalOpen" on-close="onCloseDeleteModal()">
-        {{--    TODO: connect to CRUD    --}}
         <div class="sm:flex sm:items-start">
             <div
                 class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">

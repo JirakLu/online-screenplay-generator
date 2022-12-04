@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="h-0 flex-1 overflow-y-auto pt-5 pb-4">
-                    <a href="{{ route("index") }}" class="flex flex-shrink-0 px-6 py-4">
+                    <a href="{{ route("dashboard") }}" class="flex flex-shrink-0 px-6 py-4">
                         <x-svg.logo id="mobile"/>
                     </a>
                     <nav class="mt-5 space-y-1 px-2">
@@ -99,7 +99,7 @@
     <div class="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
         <div class="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
             <div class="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-                <a href="{{ route("index") }}" class="flex flex-shrink-0 px-6 py-4">
+                <a href="{{ route("dashboard") }}" class="flex flex-shrink-0 px-6 py-4">
                     <x-svg.logo id="desktop"/>
                 </a>
                 <nav class="mt-5 flex-1 flex gap-1 flex-col items-stretch bg-white px-2">

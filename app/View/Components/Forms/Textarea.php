@@ -17,7 +17,7 @@ class Textarea extends Component
     )
     {
         if ($this->remember && !is_null(old($this->name))) {
-            $this->value = old($this->name);
+            $this->value = trim(old($this->name));
         }
 
         if (empty($this->id)) {
