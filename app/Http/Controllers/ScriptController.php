@@ -18,13 +18,13 @@ class ScriptController extends Controller
 
         $sceneTypes = [];
 
-        SceneType::all()->each(function ($sceneType) use (&$sceneTypes) {
+        SceneType::all(['id', 'short'])->each(function ($sceneType) use (&$sceneTypes) {
             $sceneTypes[$sceneType->id] = $sceneType->short;
         });
 
-        $shotType = [];
+        $shotTypes = [];
 
-        ShotType::all()->each(function ($shotType) use (&$shotTypes) {
+        ShotType::all(['id', 'full'])->each(function ($shotType) use (&$shotTypes) {
             $shotTypes[$shotType->id] = $shotType->full;
         });
 
@@ -42,7 +42,6 @@ class ScriptController extends Controller
             'scenes.shots.shotParams',
             'scenes.shots.shotTypeFrom',
             'scenes.shots.shotTypeTo',
-            'scenes.shots.comments',
             'scenes.shots.sounds',
             'scenes.shots.monologs',
         ])->find($id);
@@ -77,7 +76,7 @@ class ScriptController extends Controller
     }
 
 
-    public function store(Response $respon)
+    public function store(Response $response)
     {
         //TODO: store script
     }
