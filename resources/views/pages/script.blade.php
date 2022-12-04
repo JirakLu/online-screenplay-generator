@@ -1,5 +1,3 @@
-@extends("layout.layout")
-
-@section("content")
-
-@endsection
+<x-layout.dashboard-layout>
+    <h1>Script</h1>
+</x-layout.dashboard-layout>
