@@ -1,4 +1,4 @@
-<x-layout.dashboard-layout title="Scénář - Dashboard" x-data="{
+<x-layout.dashboard-layout title="Scenarista |  Dashboard" x-data="{
     isAddModalOpen: false,
     onCloseAddModal() {
         this.isAddModalOpen = false
@@ -10,17 +10,26 @@
     },
 }">
     <x-layout.container class="py-6 space-y-6">
-        <h1 class="text-3xl font-semibold text-gray-900">Scénáře</h1>
+        <h1 class="text-5xl font-semibold text-gray-900">Scénáře</h1>
         <div class="bg-white lg:min-w-0 lg:flex-1">
             <ul role="list" class="space-y-5">
-                @foreach($scripts as $script)
+                @forelse($scripts as $script)
                     <x-script-card
                         :id="$script->id"
                         :name="$script->name"
                         :description="$script->description"
                         :updated-at="$script->updated_at"
                     />
-                @endforeach
+                @empty
+                    <div class="flex gap-2">
+                        <h1 class="text-lg">Zatím tu není žádný scénář.</h1>
+                        <button @click="isAddModalOpen = true"
+                                class="text-lg text-cyan-500 underline hover:text-cyan-700 transition-all">
+                            Vytvořit
+                            nový
+                        </button>
+                    </div>
+                @endforelse
             </ul>
         </div>
     </x-layout.container>
