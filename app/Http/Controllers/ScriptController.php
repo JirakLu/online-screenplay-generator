@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Script;
 use App\Services\PDFService;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 
 class ScriptController extends Controller
 {
@@ -29,6 +31,7 @@ class ScriptController extends Controller
             'scenes.shots.sounds',
             'scenes.shots.monologs',
         ])->find($id);
+        Gate::authorize('view', $script);
 
         $script->scenes = $script->scenes->sortBy('number');
         // sort shots by number
@@ -43,23 +46,21 @@ class ScriptController extends Controller
     {
         // delete script with id $id
         $script = Script::find($id);
+        Gate::authorize('delete', $script);
         $script->delete();
         return redirect()->route("dashboard");
 
     }
 
-    public function create()
-    {
-        //TODO: create script
-    }
 
+
+
+    public function store(Response $respon)
+    {
+        //TODO: store script
+    }
 
     // Return PDF preview
-
-    public function update()
-    {
-        //TODO: update script
-    }
 
     public function preview(int $id)
     {
