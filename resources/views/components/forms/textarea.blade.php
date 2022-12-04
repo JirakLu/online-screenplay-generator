@@ -1,4 +1,4 @@
-<div>
+<div class="{{ $outerClassname }}">
     <label
         for="{{ $id }}" @class([ "block text-sm font-medium text-gray-700" => !$hideLabel, "sr-only" => $hideLabel ])>
         {{ $label }}

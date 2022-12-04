@@ -14,6 +14,7 @@ class Textarea extends Component
         public bool   $hideLabel = false,
         public string $value = "",
         public bool   $remember = false,
+        public string $outerClassname = '',
     )
     {
         if ($this->remember && !is_null(old($this->name))) {
