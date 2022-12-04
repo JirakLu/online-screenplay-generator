@@ -9,7 +9,7 @@
     @vite('resources/css/app.css')
 </head>
 <body class="antialiased min-h-screen w-full scroll-smooth flex flex-col">
-<main class="grow">
+<main class="grow bg-gray-50">
     @yield("content")
 </main>
 </body>

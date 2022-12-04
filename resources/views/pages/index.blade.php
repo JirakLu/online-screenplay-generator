@@ -6,7 +6,5 @@
 @endphp
 
 @section("content")
-    <pre>
-    {{  $users->toJson(JSON_PRETTY_PRINT) }}
-    </pre>
+
 @endsection

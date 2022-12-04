@@ -6,6 +6,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ScriptController;
 use App\Http\Controllers\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,4 +53,5 @@ Route::get('/', [IndexController::class, "index"]);
 
 Route::middleware(["auth", "verified"])->group(function () {
     Route::get("/dashboard", [DashboardController::class, "index"])->name("dashboard");
+    Route::get('/script', [ScriptController::class, "index"])->name("script");
 });
