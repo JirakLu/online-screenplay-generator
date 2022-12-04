@@ -15,8 +15,6 @@
         <div
             class="flex flex-shrink-0 flex-col items-end space-y-3 justify-between">
             <div class="flex flex-row gap-x-3">
-                {{--        TODO: connect to CRUD        --}}
-                {{--        Export        --}}
                 <a href="{{ route("script.download", ["id" => $id]) }}"
                    class="group w-9 h-9 grid place-items-center rounded-lg bg-gray-100 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -44,8 +42,7 @@
 
                 </button>
             </div>
-            {{--        TODO: connect to CRUD        --}}
-            <x-buttons.primary-button type="link" href="">
+            <x-buttons.primary-button type="link" :href="route('script.index', ['id' => $id])">
                 Upravit
             </x-buttons.primary-button>
         </div>

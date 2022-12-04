@@ -32,7 +32,6 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
 Route::get('/zapomenute-heslo', [PasswordController::class, 'forgottenPassword'])->name('forgotten-password');
 
-Route::get("/pdf", [GeneratePDFController::class, "generate"])->name("pdf-generate");
 
 // Email verification
 Route::middleware('auth')->group(function () {
@@ -59,7 +58,7 @@ Route::middleware(["auth", "verified"])->group(function () {
         Route::post("/vytorit", [ScriptController::class, "store"])->name("store");
         Route::get("/{id}/odstranit", [ScriptController::class, "delete"])->name("delete");
 
-        Route::get("/{id}/pdf", [GeneratePDFController::class, "preview"])->name("pdf");
-        Route::get("/{id}/stahnout", [GeneratePDFController::class, "download"])->name("download");
+        Route::get("/{id}/pdf", [ScriptController::class, "preview"])->name("pdf");
+        Route::get("/{id}/stahnout", [ScriptController::class, "download"])->name("download");
     });
 });
