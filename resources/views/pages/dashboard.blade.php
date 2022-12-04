@@ -5,11 +5,13 @@
     },
 
     isDeleteModalOpen: false,
+    deleteId: null,
+    deleteUrl: '{{ route('script.delete', ['id' => 'tmp']) }}',
     onCloseDeleteModal() {
         this.isDeleteModalOpen = false
     },
 }">
-    <x-layout.container class="py-6 space-y-6">
+    <x-layout.container class="py-8 space-y-8">
         <h1 class="text-3xl sm:text-5xl font-semibold text-gray-900">Scénáře</h1>
         <div class="bg-white lg:min-w-0 lg:flex-1">
             <ul role="list" class="space-y-5">
@@ -77,10 +79,10 @@
             </div>
         </div>
         <div class="mt-5 sm:mt-8 sm:flex sm:flex-row-reverse">
-            <button type="button"
-                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+            <a x-bind:href="deleteUrl.replace('tmp', deleteId)" type="button"
+               class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
                 Odstranit
-            </button>
+            </a>
             <button type="button"
                     @click="onCloseDeleteModal()"
                     class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm">

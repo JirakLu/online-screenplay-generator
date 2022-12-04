@@ -15,6 +15,7 @@
         <div
             class="flex flex-shrink-0 flex-col items-end space-y-3 justify-between">
             <div class="flex flex-row gap-x-3">
+                {{--        Download        --}}
                 <a href="{{ route("script.download", ["id" => $id]) }}"
                    class="group w-9 h-9 grid place-items-center rounded-lg bg-gray-100 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +29,7 @@
                     </svg>
                 </a>
                 {{--        Delete        --}}
-                <button @click="isDeleteModalOpen = true"
+                <button @click="isDeleteModalOpen = true; deleteId = {{ $id }}"
                         class="group w-9 h-9 grid place-items-center rounded-lg bg-gray-100 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          fill="none"
