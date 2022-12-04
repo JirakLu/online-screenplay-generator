@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ScriptInitRequest;
+use App\Models\SceneType;
 use App\Models\Script;
+use App\Models\ShotType;
 use App\Services\PDFService;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
@@ -14,7 +16,19 @@ class ScriptController extends Controller
     {
         $script = $this->getScript($id);
 
-        return view("pages.script", compact("script"));
+        $sceneTypes = [];
+
+        SceneType::all()->each(function ($sceneType) use (&$sceneTypes) {
+            $sceneTypes[$sceneType->id] = $sceneType->short;
+        });
+
+        $shotType = [];
+
+        ShotType::all()->each(function ($shotType) use (&$shotTypes) {
+            $shotTypes[$shotType->id] = $shotType->full;
+        });
+
+        return view("pages.script", compact("script", "sceneTypes", "shotTypes"));
     }
 
     public function getScript(int $id): Script
