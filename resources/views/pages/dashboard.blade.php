@@ -13,7 +13,7 @@
 }">
     <x-layout.container class="py-8 space-y-8">
         <h1 class="text-3xl sm:text-5xl font-semibold text-gray-900">Scénáře</h1>
-        <div class="bg-white lg:min-w-0 lg:flex-1">
+        <div class="bg-gray-50 lg:min-w-0 lg:flex-1">
             <ul role="list" class="space-y-5">
                 @forelse($scripts as $script)
                     <x-script-card

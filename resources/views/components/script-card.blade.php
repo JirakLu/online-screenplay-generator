@@ -1,4 +1,4 @@
-<li class="p-4 sm:p-6 border border-gray-200 rounded-lg">
+<li class="p-4 sm:p-6 border border-gray-200 rounded-lg bg-white">
     <div class="flex items-stretch justify-between space-x-4">
         <div class="min-w-0 space-y-3">
             <h2 class="text-xl font-medium">
