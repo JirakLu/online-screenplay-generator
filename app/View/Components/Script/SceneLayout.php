@@ -19,7 +19,9 @@ class SceneLayout extends Component
     )
     {
         if (!is_null($this->scene)) {
-            $this->characters = $this->scene->characters->toArray();
+            $this->scene->characters->each(function ($item, $key) {
+                $this->characters[$item['id']] = $item['first_name'] . " " . $item['last_name'];
+            });
         }
     }
 

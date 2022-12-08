@@ -7,16 +7,22 @@ use Illuminate\View\Component;
 
 class SelectMultiple extends Component
 {
+    public string $selectString = '';
 
     public function __construct(
         public string $name,
         public string $label,
         public string $id = "",
-        public int $selected = 0,
-        public array $options = [],
+        public array $selected = [],
+        public array $selectOptions = [],
     ) {
         if (empty($this->id)) {
             $this->id = $name . "-" . rand();
+        }
+
+        if (count($this->selectOptions) > 0) {
+
+            $this->selectString = implode(',', $this->selectOptions);
         }
     }
 

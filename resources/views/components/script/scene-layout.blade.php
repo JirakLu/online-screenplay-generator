@@ -1,3 +1,4 @@
+
 <div class="p-4 sm:p-6 border border-gray-200 rounded-lg">
     <div class="flex gap-3 w-full">
         <div>
@@ -6,7 +7,8 @@
         </div>
         <x-forms.textarea label="Popis" name="description" :value="$scene->description" required outer-classname="w-full"/>
     </div>
-    @foreach($scene->shots as $shot)
+    <x-forms.select-multiple label="Něco" name="test" :select-options="$characters"></x-forms.select-multiple>
+@foreach($scene->shots as $shot)
         <h2 class="text-xl font-medium text-gray-700 mt-4">Záběr {{$shot->number}}</h2>
         <x-script.shot-layout :shot="$shot" :characters="$characters" :shot-types="$shotTypes"/>
     @endforeach

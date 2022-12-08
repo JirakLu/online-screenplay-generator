@@ -7,7 +7,7 @@
     <h3 class="text-base font-medium text-gray-700 mt-4">Dialogy</h3>
     @foreach($shot->monologs as $monolog)
     <div class="flex gap-3">
-        <x-forms.select label="Postava" name="character" :options="$characterNames" :selected="$monolog->character_id" class="min-w-[200px]"/>
+        <x-forms.select label="Postava" name="character" :options="$characters" :selected="$monolog->character_id" class="min-w-[200px]"/>
         <x-forms.textarea label="Text" name="text" :value="$monolog->text" outer-classname="w-full" required/>
     </div>
     @endforeach
