@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Character;
-use App\Models\Comment;
 use App\Models\Monolog;
 use App\Models\Scene;
 use App\Models\Script;

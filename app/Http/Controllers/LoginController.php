@@ -10,18 +10,10 @@ use Illuminate\View\View;
 
 class LoginController extends Controller
 {
-    public function showLogin(Request $request): View|RedirectResponse
-    {
-        if (!is_null($request->user())) {
-            return redirect()->route('dashboard');
-        }
-
-        return view("pages.auth.login");
-    }
 
     public function login(LoginRequest $request): RedirectResponse
     {
-        if (Auth::attempt($request->only(["email", "password"]), $request->get("rememberMe"))) {
+        if (Auth::attempt($request->safe()->only(["email", "password"]), $request->safe()->only("rememberMe") ?? false)) {
             $request->session()->regenerate();
 
             return redirect()->intended('dashboard');
@@ -40,5 +32,14 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login');
+    }
+
+    public function showLogin(Request $request): View|RedirectResponse
+    {
+        if (!is_null($request->user())) {
+            return redirect()->route('dashboard');
+        }
+
+        return view("pages.auth.login");
     }
 }

@@ -92,10 +92,7 @@
                     @endforeach
                 </td>
                 <td>
-                    @foreach($shot->comments as $comment)
-                        {{$comment->text}}
-                        <br>
-                    @endforeach
+                    {{$shot->comment}}
                 </td>
             </tr>
 

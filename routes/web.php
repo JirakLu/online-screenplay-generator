@@ -6,6 +6,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ScriptController;
 use App\Http\Controllers\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +32,6 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
 Route::get('/zapomenute-heslo', [PasswordController::class, 'forgottenPassword'])->name('forgotten-password');
 
-Route::get("/pdf", [GeneratePDFController::class, "generate"])->name("pdf-generate");
 
 // Email verification
 Route::middleware('auth')->group(function () {
@@ -48,8 +48,18 @@ Route::middleware('auth')->group(function () {
 
 
 // Application routes
-Route::get('/', [IndexController::class, "index"]);
+Route::get('/', [IndexController::class, "index"])->name("index");
 
 Route::middleware(["auth", "verified"])->group(function () {
     Route::get("/dashboard", [DashboardController::class, "index"])->name("dashboard");
+
+    Route::prefix("/scenar")->name("script.")->group(function () {
+        Route::get("/{id}", [ScriptController::class, "index"])->name("index");
+        Route::post("/init", [ScriptController::class, "init"])->name("init");
+        Route::post("/vytorit", [ScriptController::class, "store"])->name("store");
+        Route::get("/{id}/odstranit", [ScriptController::class, "delete"])->name("delete");
+
+        Route::get("/{id}/pdf", [ScriptController::class, "preview"])->name("pdf");
+        Route::get("/{id}/stahnout", [ScriptController::class, "download"])->name("download");
+    });
 });

@@ -14,6 +14,7 @@ return new class extends Migration{
             $table->foreignId('scene_id')->constrained()->cascadeOnDelete();
             $table->integer('number');
             $table->foreignId('shot_type_from')->constrained('shot_types');
+            $table->text('comment')->nullable();
             $table->foreignId('shot_type_to')->constrained('shot_types');
 
         });
