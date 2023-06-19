@@ -23,7 +23,7 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request): RedirectResponse
     {
-        $user = User::create($request->only(["name", "email", "password"]));
+        $user = User::create($request->safe()->only(["name", "email", "password"]));
 
         event(new Registered($user));
         Auth::loginUsingId($user->id);

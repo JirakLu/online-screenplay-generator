@@ -8,8 +8,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $script = Script::whereId(1)->get();
+        $scripts = Script::whereUserId(auth()->user()->id)->get();
 
-        return view("pages.dashboard", compact("script"));
+        return view("pages.dashboard", compact("scripts"));
     }
 }

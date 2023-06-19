@@ -20,14 +20,10 @@ class Shot extends Model
         'scene_id',
         'shot_type_from',
         'shot_type_to',
+        'comment',
     ];
 
     public $timestamps = false;
-
-    public function comments(): HasMany
-    {
-        return $this->hasMany(Comment::class);
-    }
 
     public function monologs(): HasMany
     {

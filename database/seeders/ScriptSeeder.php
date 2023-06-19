@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Character;
-use App\Models\Comment;
 use App\Models\Monolog;
 use App\Models\Scene;
 use App\Models\Script;
@@ -29,7 +28,7 @@ class ScriptSeeder extends Seeder
 
             $scripts->each(function (Script $script) {
                 //Create characters
-                $characters = Character::factory(fake()->numberBetween(1, 20))->make([
+                $characters = Character::factory(fake()->numberBetween(3, 20))->make([
                     'script_id' => $script->id,
                 ]);
                 // Create Scenes
@@ -49,7 +48,7 @@ class ScriptSeeder extends Seeder
                 $scenes->each(function (Scene $scene) use ($script) {
                     // assign characters to scenes min 1 max 3 (if there are any)
                     $scene->characters()->attach($script->characters->random(
-                        fake()->numberBetween(1, min(3, $script->characters->count()))
+                        fake()->numberBetween(1, min(5, $script->characters->count()))
                     ));
 
                     // Factory
@@ -73,8 +72,6 @@ class ScriptSeeder extends Seeder
                         $shot->shotParams()->saveMany($shotParams);
                         // Factory sound for shot
                         Sound::factory(fake()->numberBetween(0, 2))->create(['shot_id' => $shot->id]);
-                        // Factory comments for shot
-                        Comment::factory(fake()->numberBetween(0, 2))->create(['shot_id' => $shot->id]);
                         // make monolog for shot
                         $monologs = Monolog::factory(fake()->numberBetween(0, 4))->make(['shot_id' => $shot->id, 'character_id' => $scene->characters->random()->id]);
                         // foreach monolog

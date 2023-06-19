@@ -21,6 +21,7 @@ class ShotFactory extends Factory
             'number' => -1,
             'shot_type_from' => ShotType::inRandomOrder()->first()->id,
             'shot_type_to' => ShotType::inRandomOrder()->first()->id,
+            'comment' => fake()->numberBetween(0, 5) > 2 ? fake()->text(60) : "",
         ];
     }
 }
