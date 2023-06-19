@@ -1,29 +1,29 @@
 # For more information: https://laravel.com/docs/sail
 version: '3'
 services:
-    laravel.test:
-        build:
-            context: ./vendor/laravel/sail/runtimes/8.1
-            dockerfile: Dockerfile
-            args:
-                WWWGROUP: '1000'
-        image: sail-8.1/app
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
-        ports:
-            - '${APP_PORT:-80}:80'
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
-        environment:
-            WWWUSER: '1000'
-            LARAVEL_SAIL: 1
-            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
-            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
-        volumes:
-            - '.:/var/www/html'
-        networks:
-            - app-network
-        depends_on:
-            - mysql
+    #    laravel.test:
+    #        build:
+    #            context: ./vendor/laravel/sail/runtimes/8.1
+    #            dockerfile: Dockerfile
+    #            args:
+    #                WWWGROUP: '1000'
+    #        image: sail-8.1/app
+    #        extra_hosts:
+    #            - 'host.docker.internal:host-gateway'
+    #        ports:
+    #            - '${APP_PORT:-80}:80'
+    #            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+    #        environment:
+    #            WWWUSER: '1000'
+    #            LARAVEL_SAIL: 1
+    #            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+    #            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+    #        volumes:
+    #            - '.:/var/www/html'
+    #        networks:
+    #            - app-network
+    #        depends_on:
+    #            - mysql
     mysql:
         image: mariadb:10.6.0-focal
         container_name: ${APP_NAME}_db
@@ -33,7 +33,7 @@ services:
             - '3306:3306'
         environment:
             MYSQL_ROOT_PASSWORD: secret
-            MYSQL_DATABASE: app
+            MYSQL_DATABASE: scenar
         volumes:
             - dbdata:/var/lib/mysql
         networks:
